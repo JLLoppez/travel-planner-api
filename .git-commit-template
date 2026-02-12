@@ -1,0 +1,103 @@
+Initial commit: Project setup
+
+- TypeScript config with strict mode
+- Basic project structure
+- Dependencies: Apollo Server, GraphQL, axios
+
+---
+
+Add Open-Meteo HTTP client
+
+- Wrapper around geocoding and forecast APIs
+- Error handling with context
+- Timeout configuration
+
+Took a while to figure out the right query params - Open-Meteo docs
+are good but had to experiment with timezone formatting.
+
+---
+
+Implement GeocodingService
+
+- City search with result limit
+- Maps Open-Meteo response to domain City type
+- Handles empty queries gracefully
+
+---
+
+Add WeatherService
+
+- Fetches 7-day forecast
+- Transforms raw API response to clean domain objects
+- Includes current, hourly, and daily data
+
+---
+
+Build ActivityService - first pass
+
+Initial scoring logic for all 4 activities. Skiing scores are too low
+even in good conditions - need to adjust thresholds.
+
+---
+
+Fix skiing score calculation
+
+- Increased snow depth weight
+- Adjusted ideal temperature range
+- Added bonus for light snowfall
+
+Now scoring 70-80 in actual ski conditions (tested with Innsbruck coords).
+
+---
+
+Refine indoor sightseeing logic
+
+Changed baseline from 0 to 50 - indoor activities should always be
+viable, weather just makes them more or less appealing.
+
+---
+
+Add GraphQL schema
+
+- Clean type definitions
+- Documented with descriptions
+- Three main queries: suggestions, forecast, ranking
+
+---
+
+Implement resolvers
+
+- Thin orchestration layer
+- Services do all the heavy lifting
+- buildCityFromCoords helper for coordinate-only queries
+
+---
+
+Wire up Apollo Server
+
+- Express + Apollo integration
+- CORS enabled
+- Health check endpoint at /health
+
+Tested manually with GraphQL playground - works!
+
+---
+
+Add ActivityService unit tests
+
+- Test all 4 activity types
+- Edge cases: empty arrays, missing fields
+- Score ordering and suitable flag logic
+
+100% coverage on ActivityService now.
+
+---
+
+Final polish
+
+- README with architecture explanation
+- Non-technical documentation
+- Development notes
+- Code comments where logic isn't obvious
+
+Ready for submission.
