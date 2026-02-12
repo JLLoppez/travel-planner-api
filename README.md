@@ -1,6 +1,6 @@
 # Travel Planner API
 
-A GraphQL API that provides intelligent travel activity recommendations based on real-time weather forecasts.
+A GraphQL API that recommends travel activities based on real-time weather forecasts.
 
 ## Overview
 
@@ -18,8 +18,7 @@ Uses [Open-Meteo](https://open-meteo.com/) (free, no API key needed) for all wea
 ```bash
 npm install
 npm run dev     # http://localhost:3000/graphql
-npm test        # Run test suite
-```
+npm test
 
 ---
 
